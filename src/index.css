@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #03060f;
+  color: #f8fafc;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.18;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 100% 3px;
+  mix-blend-mode: soft-light;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(circle at 20% 20%, rgba(34, 243, 255, 0.09), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.09), transparent 35%);
+}
+
+[data-section] {
+  scroll-margin-top: 84px;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d1b;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(34, 243, 255, 0.7), rgba(168, 85, 247, 0.7));
+}
+
+.carousel-track {
+  animation: marquee 24s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.send-btn {
+  overflow: hidden;
+}
+
+.send-btn .particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 7px;
+  width: 7px;
+  border-radius: 999px;
+  background: rgba(34, 243, 255, 0.85);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+}
+
+.send-btn .particle-b {
+  background: rgba(168, 85, 247, 0.9);
+}
+
+.send-btn .particle-c {
+  background: rgba(79, 124, 255, 0.9);
+}
+
+.send-btn .particle-d {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.send-btn.is-bursting .particle-a {
+  animation: burstA 0.6s ease-out forwards;
+}
+
+.send-btn.is-bursting .particle-b {
+  animation: burstB 0.6s ease-out forwards;
+}
+
+.send-btn.is-bursting .particle-c {
+  animation: burstC 0.6s ease-out forwards;
+}
+
+.send-btn.is-bursting .particle-d {
+  animation: burstD 0.6s ease-out forwards;
+}
+
+@keyframes burstA {
+  to {
+    opacity: 0;
+    transform: translate(-200%, -180%) scale(1.1);
+  }
+}
+
+@keyframes burstB {
+  to {
+    opacity: 0;
+    transform: translate(190%, -160%) scale(1.1);
+  }
+}
+
+@keyframes burstC {
+  to {
+    opacity: 0;
+    transform: translate(-210%, 170%) scale(1.1);
+  }
+}
+
+@keyframes burstD {
+  to {
+    opacity: 0;
+    transform: translate(220%, 180%) scale(1.1);
+  }
+}

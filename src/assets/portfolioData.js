@@ -9,7 +9,7 @@ export const portfolioData = {
     email: "saimanjunadhareddy1309@gmail.com",
     phone: "+91 9121407582",
     location: "4-1139/3 Gandhi Nagar, Podili Road, Darsi",
-    github: "https://github.com/Reddy2605",
+    github: "https://github.com/Reddy4599",
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
   quickStats: [

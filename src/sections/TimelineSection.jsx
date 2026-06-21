@@ -41,15 +41,36 @@ function TimelineSection({ entries }) {
                   )}
                   <p className="mt-3 text-slate-300">{entry.description}</p>
 
-                  <span
-                    className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.16em] ${
-                      entry.type === "experience"
-                        ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-100"
-                        : "border-violet-300/30 bg-violet-300/10 text-violet-100"
-                    }`}
-                  >
-                    {entry.type}
-                  </span>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span
+                      className={`inline-flex rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.16em] ${
+                        entry.type === "experience"
+                          ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-100"
+                          : "border-violet-300/30 bg-violet-300/10 text-violet-100"
+                      }`}
+                    >
+                      {entry.type}
+                    </span>
+                    {entry.document && (
+                      <>
+                        <a
+                          href={entry.document}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-100 transition hover:bg-cyan-300/20"
+                        >
+                          View Certificate
+                        </a>
+                        <a
+                          href={entry.document}
+                          download
+                          className="rounded-full border border-violet-300/35 bg-violet-300/10 px-3 py-1 text-xs font-medium text-violet-100 transition hover:bg-violet-300/20"
+                        >
+                          Download
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </motion.article>
               );
             })}

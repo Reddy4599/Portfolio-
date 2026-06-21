@@ -77,6 +77,7 @@ export const portfolioData = {
       date: "Jun 2024 - Jul 2024",
       location: "Chennai, Tamil Nadu",
       type: "experience",
+      document: "/certificates/tangedco-internship-certificate.pdf",
       description:
         "Built an Employee Email Database Management System for Tamil Nadu government operations using PHP backend, role-based authentication, and encrypted access controls."
     },
@@ -158,7 +159,11 @@ export const portfolioData = {
     },
     {
       issuer: "Oracle",
-      name: "Cloud Infrastructure Data Science Professional"
+      name: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional",
+      issued: "October 07, 2025",
+      validUntil: "October 07, 2027",
+      credentialId: "312359890OCI25DSOCP",
+      document: "/certificates/oracle-cloud-data-science-professional.pdf"
     },
     {
       issuer: "ServiceNow",
@@ -169,7 +174,11 @@ export const portfolioData = {
     },
     {
       issuer: "Oracle",
-      name: "Cloud Infrastructure DevOps Professional"
+      name: "Oracle Cloud Infrastructure 2025 Certified DevOps Professional",
+      issued: "September 12, 2025",
+      validUntil: "September 12, 2027",
+      credentialId: "312359890OCI25DOPOCP",
+      document: "/certificates/oracle-cloud-devops-professional.pdf"
     },
     {
       issuer: "ServiceNow",

@@ -39,6 +39,7 @@ function CertificationsSection({ certifications }) {
 
                 <div className="relative z-10 mt-4 space-y-1 text-xs text-slate-400">
                   {cert.issued && <p>Issued: {cert.issued}</p>}
+                  {cert.validUntil && <p>Valid until: {cert.validUntil}</p>}
                   {cert.credentialId && <p>Credential ID: {cert.credentialId}</p>}
                 </div>
 

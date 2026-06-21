@@ -3,7 +3,7 @@ import HeroScene from "../components/HeroScene";
 import TypewriterName from "../components/TypewriterName";
 import RotatingSubtitle from "../components/RotatingSubtitle";
 
-function HeroSection({ name, roles, statement, quickStats, contact, onViewWork }) {
+function HeroSection({ name, roles, statement, quickStats, contact, profilePhoto, onViewWork }) {
   return (
     <section
       id="home"
@@ -14,6 +14,21 @@ function HeroSection({ name, roles, statement, quickStats, contact, onViewWork }
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,transparent,rgba(3,6,15,0.9)_75%)]" />
 
       <div className="relative z-10 mx-auto w-[min(1120px,94vw)] text-center">
+        {profilePhoto && (
+          <motion.div
+            className="mx-auto mb-5 h-32 w-32 overflow-hidden rounded-full border border-cyan-300/40 bg-cosmic-900/70 p-1 shadow-neon sm:h-36 sm:w-36"
+            initial={{ opacity: 0, scale: 0.9, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={profilePhoto}
+              alt={`${name} profile`}
+              className="h-full w-full rounded-full object-cover object-top"
+            />
+          </motion.div>
+        )}
+
         <motion.p
           className="mx-auto mb-4 w-fit rounded-full border border-cyan-300/35 bg-cyan-300/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200"
           initial={{ opacity: 0, y: -12 }}

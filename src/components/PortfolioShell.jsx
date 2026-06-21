@@ -80,6 +80,7 @@ function PortfolioShell() {
           statement={portfolioData.heroStatement}
           quickStats={portfolioData.quickStats}
           contact={portfolioData.contact}
+          profilePhoto={portfolioData.profilePhoto}
           onViewWork={() => scrollToSection("projects")}
         />
         <AboutSection data={portfolioData} />

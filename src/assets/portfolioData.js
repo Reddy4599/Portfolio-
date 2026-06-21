@@ -12,10 +12,11 @@ export const portfolioData = {
     github: "https://github.com/Reddy4599",
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
+  profilePhoto: "/images/profile-photo.jpg",
   quickStats: [
     { label: "CGPA", value: "8.78/10" },
     { label: "Patent Filed", value: "1" },
-    { label: "Certifications", value: "4" },
+    { label: "Certifications", value: "5" },
     { label: "Major Projects", value: "3" }
   ],
   statsObject: {
@@ -24,7 +25,7 @@ export const portfolioData = {
     projectsBuilt: 3,
     internships: 1,
     patentsFiled: 1,
-    certifications: 4,
+    certifications: 5,
     focus: ["Backend Systems", "Machine Learning", "Data Engineering"]
   },
   skills: [
@@ -150,11 +151,21 @@ export const portfolioData = {
   certifications: [
     {
       issuer: "Oracle",
+      name: "Oracle Certified Professional: Java SE 11 Developer",
+      issued: "February 21, 2025",
+      credentialId: "317429087OCPJSE11",
+      document: "/certificates/oracle-java-se-11-developer.pdf"
+    },
+    {
+      issuer: "Oracle",
       name: "Cloud Infrastructure Data Science Professional"
     },
     {
       issuer: "ServiceNow",
-      name: "Certified Application Developer"
+      name: "Certified Application Developer",
+      issued: "May 08, 2025",
+      credentialId: "27099443",
+      document: "/certificates/servicenow-certified-application-developer.pdf"
     },
     {
       issuer: "Oracle",
@@ -162,7 +173,10 @@ export const portfolioData = {
     },
     {
       issuer: "ServiceNow",
-      name: "Certified System Administrator"
+      name: "Certified System Administrator",
+      issued: "January 23, 2025",
+      credentialId: "26606060",
+      document: "/certificates/servicenow-certified-system-administrator.pdf"
     }
   ]
 };

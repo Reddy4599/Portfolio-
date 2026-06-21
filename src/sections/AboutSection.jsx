@@ -30,6 +30,12 @@ function AnimatedStatsCode({ statsObject }) {
       <span className="text-emerald-300">{statsObject.internships}</span>
       <span className="text-slate-400">,</span>
     </span>,
+    <span key="patents">
+      <span className="text-cyan-300">  "patentsFiled"</span>
+      <span className="text-slate-400">: </span>
+      <span className="text-emerald-300">{statsObject.patentsFiled}</span>
+      <span className="text-slate-400">,</span>
+    </span>,
     <span key="certs">
       <span className="text-cyan-300">  "certifications"</span>
       <span className="text-slate-400">: </span>

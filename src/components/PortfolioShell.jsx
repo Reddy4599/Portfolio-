@@ -8,6 +8,7 @@ import AboutSection from "../sections/AboutSection";
 import CertificationsSection from "../sections/CertificationsSection";
 import ContactSection from "../sections/ContactSection";
 import HeroSection from "../sections/HeroSection";
+import PatentSection from "../sections/PatentSection";
 import ProjectsSection from "../sections/ProjectsSection";
 import TimelineSection from "../sections/TimelineSection";
 
@@ -16,6 +17,7 @@ const navItems = [
   { id: "about", label: "About" },
   { id: "timeline", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "patents", label: "Patent" },
   { id: "certifications", label: "Certifications" },
   { id: "contact", label: "Contact" }
 ];
@@ -86,6 +88,7 @@ function PortfolioShell() {
           projects={portfolioData.projects}
           onOpenProject={(project) => setSelectedProject(project)}
         />
+        <PatentSection patents={portfolioData.patents} />
         <CertificationsSection certifications={portfolioData.certifications} />
         <ContactSection
           contact={portfolioData.contact}

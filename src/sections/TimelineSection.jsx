@@ -45,9 +45,7 @@ function TimelineSection({ entries }) {
                     className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.16em] ${
                       entry.type === "experience"
                         ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-100"
-                        : entry.type === "volunteering"
-                          ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-100"
-                          : "border-violet-300/30 bg-violet-300/10 text-violet-100"
+                        : "border-violet-300/30 bg-violet-300/10 text-violet-100"
                     }`}
                   >
                     {entry.type}

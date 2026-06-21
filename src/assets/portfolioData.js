@@ -13,16 +13,17 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
   quickStats: [
-    { label: "CGPA", value: "8.84/10" },
+    { label: "CGPA", value: "8.78/10" },
+    { label: "Patent Filed", value: "1" },
     { label: "Certifications", value: "4" },
-    { label: "Major Projects", value: "3" },
-    { label: "Internships", value: "1" }
+    { label: "Major Projects", value: "3" }
   ],
   statsObject: {
     profile: "software_engineer",
-    cgpa: "8.84/10",
+    cgpa: "8.78/10",
     projectsBuilt: 3,
     internships: 1,
+    patentsFiled: 1,
     certifications: 4,
     focus: ["Backend Systems", "Machine Learning", "Data Engineering"]
   },
@@ -53,10 +54,21 @@ export const portfolioData = {
     }
   ],
   highlights: [
+    "Filed a patent for a Dual Interface Explainable AI system for multi chronic disease risk prediction and clinical validation.",
     "Delivered an Employee Email Database Management System for TANGEDCO with role-based secure access.",
     "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules.",
-    "Implemented a multi-agent LLM workflow with Planner, Researcher, Analyst, and Writer orchestration.",
-    "Engineered an IoT energy conservation system using Jetson Nano and YOLOv5-based occupancy automation."
+    "Implemented a multi-agent LLM workflow with Planner, Researcher, Analyst, and Writer orchestration."
+  ],
+  patents: [
+    {
+      title:
+        "Dual Interface XAI Based System for Multi Chronic Disease Risk Prediction and Clinical Validation",
+      status: "Patent Application Filed",
+      description:
+        "Filed a patent application for an Explainable AI-based healthcare system that predicts and assesses risks of multiple chronic diseases using patient clinical data, AI models, and clinician validation.",
+      impact:
+        "The system focuses on transparent healthcare decision support through interpretable model outputs and patient-friendly risk explanations."
+    }
   ],
   timeline: [
     {
@@ -70,7 +82,7 @@ export const portfolioData = {
     {
       title: "B.Tech CSE (Information Technology) - SRM IST, Kattankulathur",
       date: "2022 - 2026",
-      location: "CGPA: 8.84/10",
+      location: "CGPA: 8.78/10",
       type: "education",
       description:
         "Built strong foundations in software engineering, machine learning, backend systems, and data-centric application development through coursework and project execution."
@@ -89,14 +101,6 @@ export const portfolioData = {
       location: "Percentage: 81.4%",
       type: "education",
       description: "Completed foundational schooling with strong academic performance and early interest in technology."
-    },
-    {
-      title: "Community Development Member - Lions International",
-      date: "Volunteer",
-      location: "Community Service",
-      type: "volunteering",
-      description:
-        "Contributed to vision care, hunger relief, disaster response initiatives, and health camp support through collaborative community programs."
     }
   ],
   projects: [

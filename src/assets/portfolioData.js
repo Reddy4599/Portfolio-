@@ -8,7 +8,7 @@ export const portfolioData = {
   contact: {
     email: "saimanjunadhareddy1309@gmail.com",
     phone: "+91 9121407582",
-    location: "4-1139/3 Gandhi Nagar, Podili Road, Darsi",
+    location: "A-605 Milano Orchard Apartments, Urapakkam, Chennai - 603210",
     github: "https://github.com/Reddy4599",
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
@@ -16,7 +16,7 @@ export const portfolioData = {
   quickStats: [
     { label: "CGPA", value: "8.78/10" },
     { label: "Patent Filed", value: "1" },
-    { label: "Certifications", value: "5" },
+    { label: "Certifications", value: "6" },
     { label: "Major Projects", value: "3" }
   ],
   statsObject: {
@@ -25,29 +25,25 @@ export const portfolioData = {
     projectsBuilt: 3,
     internships: 1,
     patentsFiled: 1,
-    certifications: 5,
+    certifications: 6,
     focus: ["Backend Systems", "Machine Learning", "Data Engineering"]
   },
   skills: [
     {
       category: "Programming Languages",
-      items: ["Python", "JavaScript", "SQL", "PHP", "BASH"]
+      items: ["Python", "JavaScript", "TypeScript", "SQL", "C++"]
     },
     {
-      category: "Frontend Technologies",
-      items: ["HTML", "CSS", "React.js", "Flutter"]
-    },
-    {
-      category: "Tools and Databases",
-      items: ["Git", "GitHub", "MySQL", "MongoDB", "TensorFlow Lite", "ServiceNow"]
-    },
-    {
-      category: "Backend and Cloud Infrastructure",
-      items: ["Node.js", "Express.js", "REST APIs", "Firebase"]
+      category: "Backend and Databases",
+      items: ["Node.js", "NestJS", "Express.js", "REST APIs", "MongoDB", "MySQL", "PostgreSQL"]
     },
     {
       category: "Data Engineering and AI",
-      items: ["Machine Learning", "Data Pipelines", "NLP", "Pandas", "NumPy", "Power BI", "Tableau"]
+      items: ["Machine Learning", "Data Pipelines", "Feature Engineering", "NLP"]
+    },
+    {
+      category: "Tools and Platforms",
+      items: ["Git", "GitHub", "Swagger", "Docker", "Firebase", "ServiceNow"]
     },
     {
       category: "Languages",
@@ -57,23 +53,23 @@ export const portfolioData = {
   highlights: [
     "Filed a patent for a Dual Interface Explainable AI system for multi chronic disease risk prediction and clinical validation.",
     "Delivered an Employee Email Database Management System for TANGEDCO with role-based secure access.",
-    "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules.",
-    "Implemented a multi-agent LLM workflow with Planner, Researcher, Analyst, and Writer orchestration."
+    "Built FinCore, a modular core banking API with JWT authentication, atomic transfers, audit logs, and CI-backed test coverage.",
+    "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules."
   ],
   patents: [
     {
       title:
-        "Dual Interface XAI Based System for Multi Chronic Disease Risk Prediction and Clinical Validation",
+        "Dual-Interface XAI-Based System for Multi-Chronic Disease Risk Prediction and Clinical Validation",
       status: "Patent Application Filed",
       description:
-        "Filed a patent application for an Explainable AI-based healthcare system that predicts and assesses risks of multiple chronic diseases using patient clinical data, AI models, and clinician validation.",
+        "Filed a patent application for an explainable AI system that predicts multiple chronic-disease risks using clinical data, AI models and clinician validation.",
       impact:
-        "The system focuses on transparent healthcare decision support through interpretable model outputs and patient-friendly risk explanations."
+        "Designed interpretable model outputs and patient-friendly explanations to support transparent healthcare decision-making."
     }
   ],
   timeline: [
     {
-      title: "Software Engineer Intern Developer - TANGEDCO",
+      title: "Software Engineer Intern - TANGEDCO",
       date: "Jun 2024 - Jul 2024",
       location: "Chennai, Tamil Nadu",
       type: "experience",
@@ -82,12 +78,12 @@ export const portfolioData = {
         "Built an Employee Email Database Management System for Tamil Nadu government operations using PHP backend, role-based authentication, and encrypted access controls."
     },
     {
-      title: "B.Tech CSE (Information Technology) - SRM IST, Kattankulathur",
+      title: "B.Tech Computer Science and Engineering - SRM IST, Kattankulathur",
       date: "2022 - 2026",
       location: "CGPA: 8.78/10",
       type: "education",
       description:
-        "Built strong foundations in software engineering, machine learning, backend systems, and data-centric application development through coursework and project execution."
+        "Built strong foundations in software engineering, backend systems, databases, data engineering and machine-learning application development."
     },
     {
       title: "Class XII (CBSE MPC) - Velammal International School, Ponneri",
@@ -108,55 +104,48 @@ export const portfolioData = {
   projects: [
     {
       id: "xai-health-screening",
-      title: "XAI Based Mobile Health Screening System",
+      title: "XAI-Based Mobile Health Screening System",
       description:
-        "Explainable AI mobile platform for early risk assessment of Diabetes, Stroke, Pneumonia, and Skin Lesions.",
+        "Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
       details:
-        "Developed prediction pipelines in Python and TensorFlow, deployed models to Flutter using TensorFlow Lite for low-latency on-device inference, and integrated Firebase with role-based workflows for doctors and patients. Added feature-level and visual explanations to improve decision transparency.",
+        "Developed machine-learning models in Python and TensorFlow, deployed them through Flutter and TensorFlow Lite for on-device inference, and integrated Firebase authentication and cloud synchronization with role-based workflows.",
       detailsPoints: [
-        "Developed prediction pipelines in Python and TensorFlow for early risk assessment across Diabetes, Stroke, Pneumonia, and Skin Lesion modules.",
-        "Deployed models to Flutter using TensorFlow Lite for low-latency on-device inference and better offline usability.",
-        "Integrated Firebase authentication with role-based workflows for doctors and patients, and added explainability layers for transparent model decisions."
+        "Developed an Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
+        "Built machine-learning models using Python and TensorFlow and deployed them through Flutter and TensorFlow Lite for on-device inference.",
+        "Integrated Firebase authentication and cloud synchronization with role-based workflows for patients and doctors."
       ],
       tech: ["Python", "TensorFlow", "Flutter", "TensorFlow Lite", "Firebase"]
     },
     {
-      id: "multi-agent-research-generator",
-      title: "Multi-Agent Research and Report Generator",
+      id: "fincore-banking-platform",
+      title: "FinCore Banking Platform",
       description:
-        "LLM-based multi-agent system that automates research, analysis, and report generation pipelines.",
+        "Modular core banking API with JWT authentication, atomic transfers, immutable ledgering, and CI-backed tests.",
       details:
-        "Designed Planner, Researcher, Analyst, and Writer agents with tool integrations and external APIs for live data retrieval. Implemented orchestration logic for improved task decomposition, context transfer, and structured reasoning across agents.",
+        "Built a modular core banking API supporting account management, administrator-controlled deposits, atomic transfers, statements, transaction reversals, immutable double-entry ledgering, idempotent payment processing and audit-ready infrastructure.",
       detailsPoints: [
-        "Designed Planner, Researcher, Analyst, and Writer agents with clear responsibilities for structured task execution.",
-        "Integrated external APIs for live data retrieval to improve relevance and freshness of generated reports.",
-        "Implemented an orchestration pipeline that improved task decomposition, context transfer, and multi-step reasoning quality."
+        "Built a modular core banking API supporting JWT authentication, account management, administrator-controlled deposits, atomic transfers, statements and transaction reversals.",
+        "Implemented an immutable double-entry ledger with balanced debit and credit entries, atomic transactions, idempotent payment processing, audit logs, outbox events and PostgreSQL row locking.",
+        "Achieved 95.28% line coverage using Jest and Supertest with PostgreSQL integration tests, Docker-based test infrastructure and GitHub Actions CI."
       ],
-      tech: ["Python", "LLMs", "Agent Orchestration", "APIs", "Automation"]
+      tech: ["TypeScript", "NestJS", "PostgreSQL", "Jest", "Docker", "GitHub Actions"]
     },
     {
       id: "iot-energy-conservation",
       title: "IoT-Based Automated Energy Conservation System",
       description:
-        "Occupancy-aware automation platform using Jetson Nano and YOLOv5 to reduce energy consumption.",
+        "Occupancy-based appliance automation system using Jetson Nano, YOLOv5, and Python.",
       details:
-        "Engineered computer vision-driven occupancy detection with smart timeout logic to automate appliance control. Built REST APIs for remote monitoring and real-time system control, delivering measurable energy savings.",
+        "Engineered an occupancy-based appliance automation system using Jetson Nano, YOLOv5 and Python, with real-time detection, configurable timeout logic and REST APIs for remote monitoring and control.",
       detailsPoints: [
-        "Engineered occupancy detection using Jetson Nano and YOLOv5 for vision-based automation decisions.",
-        "Implemented smart timeout logic to automate appliance control and reduce unnecessary energy usage.",
-        "Built REST APIs for remote monitoring and real-time control, enabling measurable operational savings."
+        "Engineered an occupancy-based appliance automation system using Jetson Nano, YOLOv5 and Python.",
+        "Automated appliance control using real-time occupancy detection and configurable timeout logic.",
+        "Developed REST APIs for remote monitoring and real-time system control."
       ],
       tech: ["Python", "Jetson Nano", "YOLOv5", "Computer Vision", "REST APIs"]
     }
   ],
   certifications: [
-    {
-      issuer: "Oracle",
-      name: "Oracle Certified Professional: Java SE 11 Developer",
-      issued: "February 21, 2025",
-      credentialId: "317429087OCPJSE11",
-      document: "/certificates/oracle-java-se-11-developer.pdf"
-    },
     {
       issuer: "Oracle",
       name: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional",
@@ -167,10 +156,14 @@ export const portfolioData = {
     },
     {
       issuer: "ServiceNow",
-      name: "Certified Application Developer",
-      issued: "May 08, 2025",
-      credentialId: "27099443",
-      document: "/certificates/servicenow-certified-application-developer.pdf"
+      name: "Certified System Administrator",
+      issued: "January 23, 2025",
+      credentialId: "26606060",
+      document: "/certificates/servicenow-certified-system-administrator.pdf"
+    },
+    {
+      issuer: "Oracle",
+      name: "Oracle Agentic AI Certified Foundations Associate"
     },
     {
       issuer: "Oracle",
@@ -182,10 +175,14 @@ export const portfolioData = {
     },
     {
       issuer: "ServiceNow",
-      name: "Certified System Administrator",
-      issued: "January 23, 2025",
-      credentialId: "26606060",
-      document: "/certificates/servicenow-certified-system-administrator.pdf"
+      name: "Certified Application Developer",
+      issued: "May 08, 2025",
+      credentialId: "27099443",
+      document: "/certificates/servicenow-certified-application-developer.pdf"
+    },
+    {
+      issuer: "NISM",
+      name: "SEBI Investor Awareness Certification"
     }
   ]
 };

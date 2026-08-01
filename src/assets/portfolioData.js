@@ -12,7 +12,7 @@ export const portfolioData = {
     github: "https://github.com/Reddy4599",
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
-  profilePhoto: "/images/profile-photo.jpg",
+  profilePhoto: "/images/profile-photo.webp",
   quickStats: [
     { label: "CGPA", value: "8.78/10" },
     { label: "Patent Filed", value: "1" },

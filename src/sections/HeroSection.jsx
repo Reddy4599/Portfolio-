@@ -24,7 +24,7 @@ function HeroSection({ name, roles, statement, quickStats, contact, profilePhoto
             <img
               src={profilePhoto}
               alt={`${name} profile`}
-              className="h-full w-full rounded-full object-cover object-top"
+              className="h-full w-full rounded-full object-cover object-[center_38%]"
             />
           </motion.div>
         )}

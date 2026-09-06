@@ -8,7 +8,7 @@ export const portfolioData = {
   contact: {
     email: "saimanjunadhareddy1309@gmail.com",
     phone: "+91 9121407582",
-    location: "A-605 Milano Orchard Apartments, Urapakkam, Chennai - 603210",
+    location: "Hyderabad, India",
     github: "https://github.com/Reddy4599",
     linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
   },
@@ -43,7 +43,7 @@ export const portfolioData = {
     },
     {
       category: "Tools and Platforms",
-      items: ["Git", "GitHub", "Swagger", "Docker", "Firebase", "ServiceNow"]
+      items: ["Git", "GitHub", "Docker", "Firebase", "ServiceNow"]
     },
     {
       category: "Languages",
@@ -59,10 +59,10 @@ export const portfolioData = {
   patents: [
     {
       title:
-        "Dual-Interface XAI-Based System for Multi-Chronic Disease Risk Prediction and Clinical Validation",
+        "XAI-Based System for Multi-Chronic Disease Risk Prediction and Clinical Validation",
       status: "Patent Application Filed",
       description:
-        "Filed a patent application for an explainable AI system that predicts multiple chronic-disease risks using clinical data, AI models and clinician validation.",
+        "Filed a patent application for an explainable AI system that predicts multiple chronic-disease risks using clinical data, AI models, and clinician validation.",
       impact:
         "Designed interpretable model outputs and patient-friendly explanations to support transparent healthcare decision-making."
     }
@@ -80,55 +80,55 @@ export const portfolioData = {
     {
       title: "B.Tech Computer Science and Engineering - SRM IST, Kattankulathur",
       date: "2022 - 2026",
-      location: "CGPA: 8.78/10",
+      location: "Kattankulathur, TN | CGPA: 8.78/10",
       type: "education",
       description:
         "Built strong foundations in software engineering, backend systems, databases, data engineering and machine-learning application development."
     },
     {
-      title: "Class XII (CBSE MPC) - Velammal International School, Ponneri",
-      date: "2020 - 2022",
-      location: "Percentage: 80.2%",
+      title: "Class XII (CBSE) - The Velammal International School",
+      date: "2022",
+      location: "Ponneri, TN | Percentage: 80.2%",
       type: "education",
       description:
         "Focused on mathematics, problem solving, and core computing concepts while building early technical project experience."
     },
     {
       title: "Class X (CBSE) - Divine Child School, Mehsana",
-      date: "2019 - 2020",
-      location: "Percentage: 81.4%",
+      date: "2020",
+      location: "Mehsana, GJ | Percentage: 81.4%",
       type: "education",
       description: "Completed foundational schooling with strong academic performance and early interest in technology."
     }
   ],
   projects: [
     {
-      id: "xai-health-screening",
-      title: "XAI-Based Mobile Health Screening System",
-      description:
-        "Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
-      details:
-        "Developed machine-learning models in Python and TensorFlow, deployed them through Flutter and TensorFlow Lite for on-device inference, and integrated Firebase authentication and cloud synchronization with role-based workflows.",
-      detailsPoints: [
-        "Developed an Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
-        "Built machine-learning models using Python and TensorFlow and deployed them through Flutter and TensorFlow Lite for on-device inference.",
-        "Integrated Firebase authentication and cloud synchronization with role-based workflows for patients and doctors."
-      ],
-      tech: ["Python", "TensorFlow", "Flutter", "TensorFlow Lite", "Firebase"]
-    },
-    {
       id: "fincore-banking-platform",
       title: "FinCore Banking Platform",
       description:
         "Modular core banking API with JWT authentication, atomic transfers, immutable ledgering, and CI-backed tests.",
       details:
-        "Built a modular core banking API supporting account management, administrator-controlled deposits, atomic transfers, statements, transaction reversals, immutable double-entry ledgering, idempotent payment processing and audit-ready infrastructure.",
+        "Built a modular core banking API supporting JWT authentication, accounts, transfers, statements, reversals, immutable ledgering, idempotent processing, audit logs, and PostgreSQL-backed transactional safety.",
       detailsPoints: [
-        "Built a modular core banking API supporting JWT authentication, account management, administrator-controlled deposits, atomic transfers, statements and transaction reversals.",
-        "Implemented an immutable double-entry ledger with balanced debit and credit entries, atomic transactions, idempotent payment processing, audit logs, outbox events and PostgreSQL row locking.",
-        "Achieved 95.28% line coverage using Jest and Supertest with PostgreSQL integration tests, Docker-based test infrastructure and GitHub Actions CI."
+        "Built a modular core banking API with JWT authentication, accounts, transfers, statements, and reversals.",
+        "Implemented an immutable double-entry ledger with atomic transactions, idempotency, audit logs, and row locking.",
+        "Achieved 98.61% line coverage using Jest, Supertest, PostgreSQL integration tests, Docker, and GitHub Actions."
       ],
-      tech: ["TypeScript", "NestJS", "PostgreSQL", "Jest", "Docker", "GitHub Actions"]
+      tech: ["Node.js", "NestJS", "PostgreSQL", "Docker", "Jest", "Supertest"]
+    },
+    {
+      id: "xai-health-screening",
+      title: "XAI-Based Mobile Health Screening System",
+      description:
+        "Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
+      details:
+        "Developed machine-learning models in Python and TensorFlow, deployed them through Flutter and TFLite for on-device inference, and integrated Firebase authentication and cloud synchronization with role-based workflows.",
+      detailsPoints: [
+        "Developed an Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
+        "Built machine-learning models using Python and TensorFlow and deployed them through Flutter and TFLite for on-device inference.",
+        "Integrated Firebase authentication and cloud synchronization with role-based workflows for patients and doctors."
+      ],
+      tech: ["Python", "TensorFlow", "Flutter", "TFLite", "Firebase"]
     },
     {
       id: "iot-energy-conservation",

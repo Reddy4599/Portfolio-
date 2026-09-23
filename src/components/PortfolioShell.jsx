@@ -1,107 +1,191 @@
-import { useEffect, useMemo, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { portfolioData } from "../assets/portfolioData";
-import BackToTopButton from "./BackToTopButton";
+import { ExperienceProvider, useExperience } from "./ExperienceContext";
 import Navbar from "./Navbar";
-import ProjectModal from "./ProjectModal";
+import BackToTopButton from "./BackToTopButton";
 import Toast from "./Toast";
+import Icon from "./Icon";
 import AboutSection from "../sections/AboutSection";
-import CertificationsSection from "../sections/CertificationsSection";
-import ContactSection from "../sections/ContactSection";
 import HeroSection from "../sections/HeroSection";
-import PatentSection from "../sections/PatentSection";
+import SkillsSection from "../sections/SkillsSection";
 import ProjectsSection from "../sections/ProjectsSection";
 import TimelineSection from "../sections/TimelineSection";
+import PatentSection from "../sections/PatentSection";
+import CertificationsSection from "../sections/CertificationsSection";
+import ContactSection from "../sections/ContactSection";
 
+const ProjectModal = lazy(() => import("./ProjectModal"));
 const navItems = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "timeline", label: "Experience" },
-  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Toolkit" },
+  { id: "projects", label: "Work" },
+  { id: "timeline", label: "Journey" },
   { id: "patents", label: "Patent" },
-  { id: "certifications", label: "Certifications" },
-  { id: "contact", label: "Contact" }
+  { id: "certifications", label: "Credentials" },
+  { id: "contact", label: "Contact" },
 ];
 
-function PortfolioShell() {
+function Studio() {
+  const { motionEnabled } = useExperience();
   const [activeSection, setActiveSection] = useState("home");
   const [selectedProject, setSelectedProject] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
-
-  const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
-
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (!section) return;
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visibleEntries[0]) {
-          setActiveSection(visibleEntries[0].target.id);
-        }
-      },
-      {
-        threshold: [0.2, 0.4, 0.7],
-        rootMargin: "-15% 0px -45% 0px"
-      }
-    );
-
-    sectionIds.forEach((id) => {
+  const progressBar = useRef();
+  const scrollToSection = useCallback(
+    (id) => {
       const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, [sectionIds]);
-
+      if (!section) return;
+      section.focus({ preventScroll: true });
+      section.scrollIntoView({
+        behavior: motionEnabled ? "smooth" : "instant",
+        block: "start",
+      });
+    },
+    [motionEnabled],
+  );
+  const closeProject = useCallback(() => setSelectedProject(null), []);
   useEffect(() => {
-    if (!toastMessage) return undefined;
-    const timer = setTimeout(() => setToastMessage(""), 3000);
+    let frame;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const threshold = window.innerHeight * 0.32;
+        let current = "home";
+        for (const item of navItems) {
+          if (
+            document.getElementById(item.id)?.getBoundingClientRect().top <=
+            threshold
+          )
+            current = item.id;
+        }
+        if (
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 8
+        )
+          current = "contact";
+        setActiveSection(current);
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (progressBar.current)
+          progressBar.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      });
+    };
+    document
+      .querySelectorAll("[data-section]")
+      .forEach((section) => section.setAttribute("tabindex", "-1"));
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  useEffect(() => {
+    if (!toastMessage) return;
+    const timer = setTimeout(() => setToastMessage(""), 4500);
     return () => clearTimeout(timer);
   }, [toastMessage]);
-
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-cosmic-950 font-body text-slate-100">
-      <div className="pointer-events-none fixed inset-0 z-0 bg-radialGrid opacity-70" />
-      <div className="pointer-events-none fixed inset-0 z-0 bg-[linear-gradient(120deg,rgba(34,243,255,0.06),transparent_40%,rgba(168,85,247,0.06))]" />
-
-      <Navbar items={navItems} activeSection={activeSection} onNavigate={scrollToSection} />
-
-      <main className="relative z-10">
-        <HeroSection
-          name={portfolioData.name}
-          roles={portfolioData.roleCycle}
-          statement={portfolioData.heroStatement}
-          quickStats={portfolioData.quickStats}
-          contact={portfolioData.contact}
-          profilePhoto={portfolioData.profilePhoto}
-          onViewWork={() => scrollToSection("projects")}
-        />
+    <>
+      <a
+        className="skip-link"
+        href="#main-content"
+        onClick={(event) => {
+          event.preventDefault();
+          document.getElementById("main-content").focus();
+        }}
+      >
+        Skip to content
+      </a>
+      <div className="reading-progress" ref={progressBar} aria-hidden="true" />
+      <Navbar
+        items={navItems}
+        activeSection={activeSection}
+        onNavigate={scrollToSection}
+      />
+      <aside className="section-rail" aria-label="Section position">
+        {navItems.map((item, i) => (
+          <button
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            aria-label={`Go to ${item.label}`}
+            aria-current={item.id === activeSection ? "location" : undefined}
+          >
+            <span>{String(i).padStart(2, "0")}</span>
+            <i />
+          </button>
+        ))}
+      </aside>
+      <main id="main-content" tabIndex={-1}>
+        <HeroSection data={portfolioData} onNavigate={scrollToSection} />
         <AboutSection data={portfolioData} />
-        <TimelineSection entries={portfolioData.timeline} />
+        <SkillsSection
+          data={portfolioData}
+          onOpenProject={setSelectedProject}
+          onNavigate={scrollToSection}
+        />
         <ProjectsSection
           projects={portfolioData.projects}
-          onOpenProject={(project) => setSelectedProject(project)}
+          onOpenProject={setSelectedProject}
+          github={portfolioData.contact.github}
         />
-        <PatentSection patents={portfolioData.patents} />
+        <TimelineSection entries={portfolioData.timeline} />
+        <PatentSection
+          patents={portfolioData.patents}
+          onExplore={() => setSelectedProject(portfolioData.projects[1])}
+        />
         <CertificationsSection certifications={portfolioData.certifications} />
         <ContactSection
           contact={portfolioData.contact}
-          onMessageSent={() => setToastMessage("Message sent!")}
+          onNotify={setToastMessage}
         />
       </main>
-
-      <BackToTopButton onClick={() => scrollToSection("home")} />
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <footer className="container site-footer">
+        <button
+          className="brand"
+          onClick={() => scrollToSection("home")}
+          aria-label="Back to home"
+        >
+          <Icon name="cube" /> mr.
+        </button>
+        <p>
+          Medagam V S Manjunadha Reddy <span>/</span> {new Date().getFullYear()}
+        </p>
+        <span>Built with intent.</span>
+      </footer>
+      <BackToTopButton
+        visible={activeSection !== "home"}
+        onClick={() => scrollToSection("home")}
+      />
+      {selectedProject && (
+        <Suspense
+          fallback={
+            <div role="status" className="toast">
+              Opening project...
+            </div>
+          }
+        >
+          <ProjectModal project={selectedProject} onClose={closeProject} />
+        </Suspense>
+      )}
       <Toast message={toastMessage} />
-    </div>
+    </>
   );
 }
 
-export default PortfolioShell;
+export default function PortfolioShell() {
+  return (
+    <ExperienceProvider>
+      <Studio />
+    </ExperienceProvider>
+  );
+}

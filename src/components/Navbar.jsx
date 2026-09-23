@@ -1,59 +1,112 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Icon from "./Icon";
+import { useExperience } from "./ExperienceContext";
 
-function Navbar({ items, activeSection, onNavigate }) {
+export default function Navbar({ items, activeSection, onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleNavigate = (id) => {
-    onNavigate(id);
+  const menuButton = useRef();
+  const header = useRef();
+  const { motionEnabled, paused, setPaused, prefersReducedMotion } =
+    useExperience();
+  useEffect(() => {
+    const close = (event) => {
+      if (event.key === "Escape" && menuOpen) {
+        setMenuOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    const outside = (event) => {
+      if (!header.current?.contains(event.target)) setMenuOpen(false);
+    };
+    document.addEventListener("keydown", close);
+    document.addEventListener("pointerdown", outside);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("pointerdown", outside);
+    };
+  }, [menuOpen]);
+  const navigate = (id) => {
     setMenuOpen(false);
+    onNavigate(id);
   };
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-cyan-400/15 bg-cosmic-900/60 backdrop-blur-lg">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" />
-      <nav className="mx-auto flex h-16 w-[min(1120px,92vw)] items-center justify-between">
+    <header className="site-header" ref={header}>
+      <nav className="container navbar" aria-label="Main navigation">
         <button
-          onClick={() => handleNavigate("home")}
-          className="group flex items-center gap-2 font-heading text-sm tracking-[0.24em] text-cyan-300 transition hover:text-cyan-200"
+          className="brand"
+          onClick={() => navigate("home")}
+          aria-label="Manjunadha Reddy, back to home"
         >
-          <span className="rounded-md border border-cyan-300/35 bg-cyan-300/10 px-2 py-1 text-[11px] tracking-[0.18em] text-cyan-100">
-            MVMR
+          <span className="brand-symbol">
+            <Icon name="cube" size={24} />
           </span>
-          <span className="hidden sm:inline">PORTFOLIO</span>
+          <span>
+            mr<span className="brand-period">.</span>
+          </span>
         </button>
-
-        <button
-          className="inline-flex flex-col gap-1.5 md:hidden"
-          aria-label="Toggle menu"
-          onClick={() => setMenuOpen((prev) => !prev)}
+        <div
+          className={`nav-links ${menuOpen ? "is-open" : ""}`}
+          id="main-menu"
         >
-          <span className="h-0.5 w-6 bg-cyan-300" />
-          <span className="h-0.5 w-6 bg-violet-300" />
-        </button>
-
-        <ul
-          className={`absolute left-4 right-4 top-20 rounded-2xl border border-violet-300/20 bg-cosmic-900/95 p-4 shadow-neon transition md:static md:flex md:items-center md:gap-2 md:border-none md:bg-transparent md:p-0 md:shadow-none ${
-            menuOpen ? "block" : "hidden md:flex"
-          }`}
-        >
-          {items.map((item) => (
-            <li key={item.id}>
+          {items
+            .filter((item) => item.id !== "home")
+            .map((item) => (
               <button
-                onClick={() => handleNavigate(item.id)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  activeSection === item.id
-                    ? "bg-cyan-400/15 text-cyan-200 shadow-[0_0_20px_rgba(34,243,255,0.28)]"
-                    : "text-slate-300 hover:bg-violet-400/10 hover:text-violet-200"
-                }`}
+                key={item.id}
+                onClick={() => navigate(item.id)}
+                aria-current={
+                  activeSection === item.id ? "location" : undefined
+                }
+                className={activeSection === item.id ? "is-active" : ""}
               >
                 {item.label}
               </button>
-            </li>
-          ))}
-        </ul>
+            ))}
+        </div>
+        <div className="nav-actions">
+          <button
+            className="icon-button motion-toggle"
+            onClick={() => setPaused(!paused)}
+            disabled={!!prefersReducedMotion}
+            aria-label={
+              prefersReducedMotion
+                ? "Reduced motion enabled by your device"
+                : motionEnabled
+                  ? "Pause animations"
+                  : "Resume animations"
+            }
+            title={
+              prefersReducedMotion
+                ? "Reduced motion enabled by your device"
+                : motionEnabled
+                  ? "Pause animations"
+                  : "Resume animations"
+            }
+          >
+            <Icon name={motionEnabled ? "pause" : "play"} size={15} />
+          </button>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="nav-resume"
+          >
+            Resume <Icon name="external" size={15} />
+          </a>
+          <button
+            ref={menuButton}
+            className="icon-button menu-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="main-menu"
+            aria-label={
+              menuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <Icon name={menuOpen ? "close" : "menu"} />
+          </button>
+        </div>
       </nav>
     </header>
   );
 }
-
-export default Navbar;

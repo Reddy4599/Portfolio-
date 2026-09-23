@@ -1,143 +1,224 @@
-import { motion } from "framer-motion";
-import HeroScene from "../components/HeroScene";
-import TypewriterName from "../components/TypewriterName";
-import RotatingSubtitle from "../components/RotatingSubtitle";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { systemModules } from "../assets/studioData";
+import Icon from "../components/Icon";
+import SceneBoundary from "../components/SceneBoundary";
+import SystemDiagram from "../components/SystemDiagram";
+import {
+  useExperience,
+  useSceneVisibility,
+} from "../components/ExperienceContext";
 
-function HeroSection({ name, roles, statement, quickStats, contact, profilePhoto, onViewWork }) {
+const HeroScene = lazy(() => import("../components/HeroScene"));
+
+export default function HeroSection({ data, onNavigate }) {
+  const { motionEnabled } = useExperience();
+  const { ref, active } = useSceneVisibility();
+  const [exploded, setExploded] = useState(false);
+  const [selected, setSelected] = useState("backend");
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [entered, setEntered] = useState(false);
+  const pointer = useRef({ x: 0, y: 0 });
+  const progress = useRef(0);
+  const onReady = useCallback(() => setReady(true), []);
+  const onFailure = useCallback(() => {
+    setReady(false);
+    setFailed(true);
+  }, []);
+  useEffect(() => {
+    if (active) setEntered(true);
+  }, [active]);
+  useEffect(() => {
+    let frame;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        progress.current = Math.min(1, window.scrollY / window.innerHeight);
+      });
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", update);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  const move = (event) => {
+    if (!motionEnabled || event.pointerType === "touch") return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    pointer.current = {
+      x: ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      y: ((event.clientY - rect.top) / rect.height) * 2 - 1,
+    };
+  };
+  const module = systemModules.find((item) => item.id === selected);
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-24"
+      className="hero section"
       data-section
+      aria-labelledby="hero-name"
     >
-      <HeroScene />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,transparent,rgba(3,6,15,0.9)_75%)]" />
-
-      <div className="relative z-10 mx-auto w-[min(1120px,94vw)] text-center">
-        {profilePhoto && (
-          <motion.div
-            className="mx-auto mb-5 h-32 w-32 overflow-hidden rounded-full border border-cyan-300/40 bg-cosmic-900/70 p-1 shadow-neon sm:h-36 sm:w-36"
-            initial={{ opacity: 0, scale: 0.9, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <img
-              src={profilePhoto}
-              alt={`${name} profile`}
-              className="h-full w-full rounded-full object-cover object-[center_38%]"
-            />
-          </motion.div>
-        )}
-
-        <motion.p
-          className="mx-auto mb-4 w-fit rounded-full border border-cyan-300/35 bg-cyan-300/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200"
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          B.Tech CSE | SRM IST | Class of 2026
-        </motion.p>
-
-        <TypewriterName text={name} />
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.3 }}
-          className="mt-4"
-        >
-          <RotatingSubtitle roles={roles} />
-        </motion.div>
-
-        <motion.p
-          className="mx-auto mt-6 max-w-3xl text-base text-slate-300 sm:text-lg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55, duration: 0.6 }}
-        >
-          {statement}
-        </motion.p>
-        <motion.p
-          className="mx-auto mt-2 max-w-3xl text-sm uppercase tracking-[0.18em] text-violet-200/90"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.65, duration: 0.5 }}
-        >
-          Target Roles: SDE and Data Engineering
-        </motion.p>
-
-        <motion.div
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-        >
-          <button
-            onClick={onViewWork}
-            className="rounded-full border border-cyan-300/35 bg-cyan-400/15 px-6 py-3 font-medium text-cyan-100 shadow-neon transition hover:bg-cyan-300/25"
-          >
-            View My Work
-          </button>
-          <a
-            href="/resume.pdf"
-            className="rounded-full border border-violet-300/35 bg-violet-400/15 px-6 py-3 font-medium text-violet-100 shadow-violet transition hover:bg-violet-300/25"
-          >
-            Download Resume
-          </a>
-        </motion.div>
-
-        <motion.div
-          className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.55 }}
-        >
-          {quickStats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl border border-cyan-300/20 bg-cosmic-900/55 px-3 py-2 backdrop-blur-sm"
-            >
-              <p className="font-heading text-lg text-cyan-200">{stat.value}</p>
-              <p className="text-[11px] uppercase tracking-[0.14em] text-slate-400">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.55 }}
-        >
-          <a
-            href={contact.github}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 uppercase tracking-[0.12em] text-cyan-100 transition hover:bg-cyan-300/20"
-          >
-            GitHub
-          </a>
-          <a
-            href={contact.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-violet-300/25 bg-violet-300/10 px-3 py-1 uppercase tracking-[0.12em] text-violet-100 transition hover:bg-violet-300/20"
-          >
-            LinkedIn
-          </a>
-        </motion.div>
+      <div className="container hero-topline">
+        <span className="eyebrow">
+          Independent thinking. Connected systems.
+        </span>
+        <span className="mono hero-location">
+          {data.contact.location} <span className="tiny-dot" />
+        </span>
       </div>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs uppercase tracking-[0.2em] text-slate-400">Scroll</span>
-          <span className="h-10 w-6 rounded-full border border-cyan-300/30 p-1">
-            <span className="block h-2 w-2 animate-bounce rounded-full bg-cyan-300" />
-          </span>
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow hero-intro">
+            <span className="tiny-dot" /> Software engineer / AI & backend
+          </p>
+          <h1 id="hero-name">
+            <span className="hero-greeting">Hi, I'm Manjunadha.</span>
+            Engineering
+            <br />
+            what's <em>next.</em>
+          </h1>
+          <p className="hero-name">{data.name}</p>
+          <p className="hero-description">
+            I turn complex problems into connected systems.
+            <br className="desktop-break" /> From reliable banking APIs to AI
+            that explains itself.
+          </p>
+          <div className="button-row">
+            <button
+              className="button button-primary"
+              onClick={() => onNavigate("projects")}
+            >
+              Explore my work <Icon name="external" />
+            </button>
+            <a
+              href="/resume.pdf"
+              download="Manjunadha-Reddy-Resume.pdf"
+              className="button button-quiet"
+            >
+              Download resume <Icon name="download" size={17} />
+            </a>
+          </div>
+          <div className="hero-person">
+            <img
+              src={data.profilePhoto}
+              width="48"
+              height="48"
+              alt="Manjunadha Reddy"
+            />
+            <div>
+              <span>B.Tech CSE graduate</span>
+              <p>
+                SRM IST <span className="text-separator">/</span> Class of 2026
+              </p>
+            </div>
+            <a
+              href={data.contact.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Manjunadha Reddy on GitHub"
+            >
+              GitHub <Icon name="external" size={16} />
+            </a>
+          </div>
         </div>
+        <div
+          className="hero-world"
+          ref={ref}
+          onPointerMove={move}
+          onPointerLeave={() => {
+            pointer.current = { x: 0, y: 0 };
+          }}
+        >
+          <div className="world-top">
+            <span className="eyebrow">
+              <Icon name="cube" size={15} /> The systems studio
+            </span>
+            <span className="mono">FIG. 001</span>
+          </div>
+          <div
+            className="world-viewport"
+            role="img"
+            aria-label={`An isometric system of connected backend, neural-network and edge-vision modules. ${exploded ? "Layers separated." : "Layers assembled."}`}
+          >
+            <div
+              className={`scene-fallback ${ready && motionEnabled && !failed ? "scene-ready" : ""}`}
+            >
+              <SystemDiagram exploded={exploded} />
+            </div>
+            {entered && motionEnabled && !failed && (
+              <SceneBoundary onFailure={onFailure}>
+                <Suspense fallback={null}>
+                  <HeroScene
+                    active={active}
+                    exploded={exploded}
+                    selected={selected}
+                    pointer={pointer}
+                    progress={progress}
+                    onReady={onReady}
+                    onFailure={onFailure}
+                  />
+                </Suspense>
+              </SceneBoundary>
+            )}
+            <span className="world-label label-api">01 / API LAYER</span>
+            <span className="world-label label-ml">02 / INFERENCE</span>
+            <span className="world-label label-edge">03 / EDGE</span>
+          </div>
+          <div className="world-controls">
+            <div>
+              <p className="module-description" aria-live="polite">
+                {module.detail}
+              </p>
+              <span className="mono">One system. Many possibilities.</span>
+            </div>
+            <button
+              className="explode-button"
+              aria-pressed={exploded}
+              onClick={() => setExploded((value) => !value)}
+            >
+              <Icon name="layers" size={18} />
+              {exploded ? "Assemble system" : "Explode system"}
+            </button>
+          </div>
+          <div
+            className="module-tabs"
+            role="group"
+            aria-label="Explore system modules"
+          >
+            {systemModules.map((item) => (
+              <button
+                key={item.id}
+                aria-pressed={selected === item.id}
+                onClick={() => setSelected(item.id)}
+                style={{ "--module-color": item.color }}
+              >
+                <span>{item.number}</span>
+                {item.name}
+                <span className="module-dot" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="container hero-bottom">
+        <button className="scroll-cue" onClick={() => onNavigate("about")}>
+          <span className="scroll-line" />
+          <span>Scroll to explore</span>
+          <Icon name="down" size={16} />
+        </button>
+        <p>
+          Backend systems <span>/</span> Machine learning <span>/</span> Data
+          engineering
+        </p>
+        <span className="mono">PORTFOLIO / 2026</span>
       </div>
     </section>
   );
 }
-
-export default HeroSection;

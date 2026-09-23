@@ -1,59 +1,130 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Icon from "./Icon";
+import SystemDiagram from "./SystemDiagram";
+import { projectStories } from "../assets/studioData";
 
-function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose }) {
+  const ref = useRef();
+  const story = projectStories[project.id];
+  useEffect(() => {
+    const dialog = ref.current;
+    const trigger = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (trigger instanceof HTMLElement)
+        trigger.focus({ preventScroll: true });
+    };
+  }, [project.id]);
+  const dismissOutside = (event) => {
+    if (event.target !== ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    if (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    )
+      onClose();
+  };
   return (
-    <AnimatePresence>
-      {project && (
-        <motion.div
-          className="fixed inset-0 z-[70] grid place-items-center bg-black/70 p-4 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+    <dialog
+      ref={ref}
+      className="project-modal"
+      aria-labelledby="project-modal-title"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClick={dismissOutside}
+      style={{ "--project-color": story.color }}
+    >
+      <div className="modal-toolbar">
+        <span className="mono">PROJECT EXPLORER / {story.category}</span>
+        <button
+          className="icon-button"
           onClick={onClose}
+          aria-label="Close project details"
+          autoFocus
         >
-          <motion.article
-            className="w-full max-w-2xl rounded-2xl border border-violet-300/25 bg-cosmic-900 p-6 shadow-violet"
-            initial={{ scale: 0.96, opacity: 0, y: 24 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.97, opacity: 0, y: 12 }}
-            transition={{ duration: 0.26 }}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="mb-3 flex items-start justify-between gap-4">
-              <h3 className="font-heading text-xl text-cyan-200">{project.title}</h3>
-              <button
-                onClick={onClose}
-                className="rounded-full border border-slate-500/50 px-3 py-1 text-sm text-slate-300 transition hover:border-cyan-300/40 hover:text-cyan-200"
-              >
-                Close
-              </button>
-            </div>
-            {Array.isArray(project.detailsPoints) && project.detailsPoints.length > 0 ? (
-              <ul className="list-disc space-y-2 pl-5 text-left text-slate-300">
-                {project.detailsPoints.map((point) => (
-                  <li key={point} className="leading-relaxed">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-left leading-relaxed text-slate-300">{project.details}</p>
-            )}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tech.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.article>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          <Icon name="close" />
+        </button>
+      </div>
+      <div className="modal-content">
+        <div className="modal-hero">
+          <div>
+            <p className="eyebrow">Inside the system</p>
+            <h2 id="project-modal-title">{project.title}</h2>
+            <p>{project.description}</p>
+          </div>
+          <SystemDiagram kind={story.kind} />
+        </div>
+        <div className="modal-two-column">
+          <div>
+            <h3>The problem</h3>
+            <p>{story.problem}</p>
+          </div>
+          <div>
+            <h3>The solution</h3>
+            <p>{project.details}</p>
+          </div>
+        </div>
+        <h3 className="modal-label">Architecture</h3>
+        <ol className="architecture-flow">
+          {story.architecture.map((step, index) => (
+            <li key={step}>
+              <span className="mono">0{index + 1}</span>
+              {step}
+              {index !== story.architecture.length - 1 && (
+                <Icon name="arrow" size={14} />
+              )}
+            </li>
+          ))}
+        </ol>
+        <h3 className="modal-label">Implementation & outcomes</h3>
+        <ul className="project-points">
+          {project.detailsPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+        <div className="modal-result">
+          <strong>{story.result}</strong>
+          <span>{story.resultLabel}</span>
+        </div>
+        <div className="tech-tags">
+          {project.tech.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+        <div className="modal-links">
+          {story.repository && (
+            <a
+              className="button button-primary"
+              href={story.repository}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View source <Icon name="external" size={17} />
+            </a>
+          )}
+          {story.liveDemo && (
+            <a
+              className="button button-quiet"
+              href={story.liveDemo}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Live demo <Icon name="external" size={17} />
+            </a>
+          )}
+          <button className="text-link" onClick={onClose}>
+            Back to portfolio <Icon name="arrow" size={17} />
+          </button>
+        </div>
+      </div>
+    </dialog>
   );
 }
-
-export default ProjectModal;

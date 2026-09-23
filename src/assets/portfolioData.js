@@ -10,14 +10,14 @@ export const portfolioData = {
     phone: "+91 9121407582",
     location: "Hyderabad, India",
     github: "https://github.com/Reddy4599",
-    linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252"
+    linkedin: "https://www.linkedin.com/in/manjunadha-reddy-3b5878252",
   },
   profilePhoto: "/images/profile-photo.webp",
   quickStats: [
     { label: "CGPA", value: "8.78/10" },
     { label: "Patent Filed", value: "1" },
     { label: "Certifications", value: "6" },
-    { label: "Major Projects", value: "3" }
+    { label: "Major Projects", value: "3" },
   ],
   statsObject: {
     profile: "software_engineer",
@@ -26,35 +26,48 @@ export const portfolioData = {
     internships: 1,
     patentsFiled: 1,
     certifications: 6,
-    focus: ["Backend Systems", "Machine Learning", "Data Engineering"]
+    focus: ["Backend Systems", "Machine Learning", "Data Engineering"],
   },
   skills: [
     {
       category: "Programming Languages",
-      items: ["Python", "JavaScript", "TypeScript", "SQL", "C++"]
+      items: ["Python", "JavaScript", "TypeScript", "SQL", "C++"],
     },
     {
       category: "Backend and Databases",
-      items: ["Node.js", "NestJS", "Express.js", "REST APIs", "MongoDB", "MySQL", "PostgreSQL"]
+      items: [
+        "Node.js",
+        "NestJS",
+        "Express.js",
+        "REST APIs",
+        "MongoDB",
+        "MySQL",
+        "PostgreSQL",
+      ],
     },
     {
       category: "Data Engineering and AI",
-      items: ["Machine Learning", "Data Pipelines", "Feature Engineering", "NLP"]
+      items: [
+        "Machine Learning",
+        "Data Pipelines",
+        "Feature Engineering",
+        "NLP",
+      ],
     },
     {
       category: "Tools and Platforms",
-      items: ["Git", "GitHub", "Docker", "Firebase", "ServiceNow"]
+      items: ["Git", "GitHub", "Docker", "Firebase", "ServiceNow"],
     },
     {
       category: "Languages",
-      items: ["English", "Gujarati", "Telugu", "Tamil", "Hindi"]
-    }
+      items: ["English", "Gujarati", "Telugu", "Tamil", "Hindi"],
+    },
   ],
   highlights: [
     "Filed a patent for a Dual Interface Explainable AI system for multi chronic disease risk prediction and clinical validation.",
     "Delivered an Employee Email Database Management System for TANGEDCO with role-based secure access.",
     "Built FinCore, a modular core banking API with JWT authentication, atomic transfers, audit logs, and CI-backed test coverage.",
-    "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules."
+    "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules.",
   ],
   patents: [
     {
@@ -64,8 +77,8 @@ export const portfolioData = {
       description:
         "Filed a patent application for an explainable AI system that predicts multiple chronic-disease risks using clinical data, AI models, and clinician validation.",
       impact:
-        "Designed interpretable model outputs and patient-friendly explanations to support transparent healthcare decision-making."
-    }
+        "Designed interpretable model outputs and patient-friendly explanations to support transparent healthcare decision-making.",
+    },
   ],
   timeline: [
     {
@@ -75,15 +88,16 @@ export const portfolioData = {
       type: "experience",
       document: "/certificates/tangedco-internship-certificate.pdf",
       description:
-        "Built an Employee Email Database Management System for Tamil Nadu government operations using PHP backend, role-based authentication, and encrypted access controls."
+        "Built an Employee Email Database Management System for Tamil Nadu government operations using PHP backend, role-based authentication, and encrypted access controls.",
     },
     {
-      title: "B.Tech Computer Science and Engineering - SRM IST, Kattankulathur",
+      title:
+        "B.Tech Computer Science and Engineering - SRM IST, Kattankulathur",
       date: "2022 - 2026",
       location: "Kattankulathur, TN | CGPA: 8.78/10",
       type: "education",
       description:
-        "Built strong foundations in software engineering, backend systems, databases, data engineering and machine-learning application development."
+        "Built strong foundations in software engineering, backend systems, databases, data engineering and machine-learning application development.",
     },
     {
       title: "Class XII (CBSE) - The Velammal International School",
@@ -91,15 +105,16 @@ export const portfolioData = {
       location: "Ponneri, TN | Percentage: 80.2%",
       type: "education",
       description:
-        "Focused on mathematics, problem solving, and core computing concepts while building early technical project experience."
+        "Focused on mathematics, problem solving, and core computing concepts while building early technical project experience.",
     },
     {
       title: "Class X (CBSE) - Divine Child School, Mehsana",
       date: "2020",
       location: "Mehsana, GJ | Percentage: 81.4%",
       type: "education",
-      description: "Completed foundational schooling with strong academic performance and early interest in technology."
-    }
+      description:
+        "Completed foundational schooling with strong academic performance and early interest in technology.",
+    },
   ],
   projects: [
     {
@@ -112,9 +127,9 @@ export const portfolioData = {
       detailsPoints: [
         "Built a modular core banking API with JWT authentication, accounts, transfers, statements, and reversals.",
         "Implemented an immutable double-entry ledger with atomic transactions, idempotency, audit logs, and row locking.",
-        "Achieved 98.61% line coverage using Jest, Supertest, PostgreSQL integration tests, Docker, and GitHub Actions."
+        "Achieved 98.61% line coverage using Jest, Supertest, PostgreSQL integration tests, Docker, and GitHub Actions.",
       ],
-      tech: ["Node.js", "NestJS", "PostgreSQL", "Docker", "Jest", "Supertest"]
+      tech: ["Node.js", "NestJS", "PostgreSQL", "Docker", "Jest", "Supertest"],
     },
     {
       id: "xai-health-screening",
@@ -126,9 +141,9 @@ export const portfolioData = {
       detailsPoints: [
         "Developed an Explainable AI mobile platform for early risk assessment of diabetes, stroke, pneumonia, and skin lesion conditions.",
         "Built machine-learning models using Python and TensorFlow and deployed them through Flutter and TFLite for on-device inference.",
-        "Integrated Firebase authentication and cloud synchronization with role-based workflows for patients and doctors."
+        "Integrated Firebase authentication and cloud synchronization with role-based workflows for patients and doctors.",
       ],
-      tech: ["Python", "TensorFlow", "Flutter", "TFLite", "Firebase"]
+      tech: ["Python", "TensorFlow", "Flutter", "TFLite", "Firebase"],
     },
     {
       id: "iot-energy-conservation",
@@ -140,10 +155,10 @@ export const portfolioData = {
       detailsPoints: [
         "Engineered an occupancy-based appliance automation system using Jetson Nano, YOLOv5 and Python.",
         "Automated appliance control using real-time occupancy detection and configurable timeout logic.",
-        "Developed REST APIs for remote monitoring and real-time system control."
+        "Developed REST APIs for remote monitoring and real-time system control.",
       ],
-      tech: ["Python", "Jetson Nano", "YOLOv5", "Computer Vision", "REST APIs"]
-    }
+      tech: ["Python", "Jetson Nano", "YOLOv5", "Computer Vision", "REST APIs"],
+    },
   ],
   certifications: [
     {
@@ -152,18 +167,18 @@ export const portfolioData = {
       issued: "October 07, 2025",
       validUntil: "October 07, 2027",
       credentialId: "312359890OCI25DSOCP",
-      document: "/certificates/oracle-cloud-data-science-professional.pdf"
+      document: "/certificates/oracle-cloud-data-science-professional.pdf",
     },
     {
       issuer: "ServiceNow",
       name: "Certified System Administrator",
       issued: "January 23, 2025",
       credentialId: "26606060",
-      document: "/certificates/servicenow-certified-system-administrator.pdf"
+      document: "/certificates/servicenow-certified-system-administrator.pdf",
     },
     {
       issuer: "Oracle",
-      name: "Oracle Agentic AI Certified Foundations Associate"
+      name: "Oracle Agentic AI Certified Foundations Associate",
     },
     {
       issuer: "Oracle",
@@ -171,18 +186,18 @@ export const portfolioData = {
       issued: "September 12, 2025",
       validUntil: "September 12, 2027",
       credentialId: "312359890OCI25DOPOCP",
-      document: "/certificates/oracle-cloud-devops-professional.pdf"
+      document: "/certificates/oracle-cloud-devops-professional.pdf",
     },
     {
       issuer: "ServiceNow",
       name: "Certified Application Developer",
       issued: "May 08, 2025",
       credentialId: "27099443",
-      document: "/certificates/servicenow-certified-application-developer.pdf"
+      document: "/certificates/servicenow-certified-application-developer.pdf",
     },
     {
       issuer: "NISM",
-      name: "SEBI Investor Awareness Certification"
-    }
-  ]
+      name: "SEBI Investor Awareness Certification",
+    },
+  ],
 };

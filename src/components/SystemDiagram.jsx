@@ -34,7 +34,13 @@ export default function SystemDiagram({
 }) {
   const id = useId().replace(/:/g, "");
   const color =
-    kind === "health" ? "#c4b7f2" : kind === "energy" ? "#edb995" : "#b8edcf";
+    kind === "workflow"
+      ? "#a6dfde"
+      : kind === "health"
+        ? "#c4b7f2"
+        : kind === "energy"
+          ? "#edb995"
+          : "#b8edcf";
   return (
     <svg
       className={`system-diagram ${className} ${exploded ? "diagram-exploded" : ""}`}
@@ -185,6 +191,31 @@ export default function SystemDiagram({
           </text>
           <text x="317" y="291">
             CONTROL
+          </text>
+        </>
+      )}
+      {kind === "workflow" && (
+        <>
+          <path
+            className="diagram-signal"
+            d="m110 185 116-58 122 59-122 63-116-64"
+            stroke={color}
+            strokeWidth="2"
+            strokeDasharray="6 8"
+          />
+          <Block x={66} y={174} w={44} h={25} color={color} />
+          <Block x={182} y={116} w={44} h={35} color={color} delay={0.15} />
+          <Block x={304} y={175} w={44} h={25} color={color} delay={0.3} />
+          <Block x={182} y={238} w={44} h={18} color={color} delay={0.45} />
+          <path d="m218 121 8 10 17-13" stroke="#172c24" strokeWidth="3" />
+          <text x="66" y="242">
+            ASSESS
+          </text>
+          <text x="282" y="242">
+            REMEDIATE
+          </text>
+          <text x="174" y="307">
+            APPROVE
           </text>
         </>
       )}

@@ -17,12 +17,12 @@ export const portfolioData = {
     { label: "CGPA", value: "8.78/10" },
     { label: "Patent Filed", value: "1" },
     { label: "Certifications", value: "6" },
-    { label: "Major Projects", value: "3" },
+    { label: "Major Projects", value: "4" },
   ],
   statsObject: {
     profile: "software_engineer",
     cgpa: "8.78/10",
-    projectsBuilt: 3,
+    projectsBuilt: 4,
     internships: 1,
     patentsFiled: 1,
     certifications: 6,
@@ -68,6 +68,7 @@ export const portfolioData = {
     "Delivered an Employee Email Database Management System for TANGEDCO with role-based secure access.",
     "Built FinCore, a modular core banking API with JWT authentication, atomic transfers, audit logs, and CI-backed test coverage.",
     "Built an XAI-enabled health screening app across Diabetes, Stroke, Pneumonia, and Skin Lesion risk modules.",
+    "Built a native ServiceNow vendor-risk application combining CSA administration, CAD development, and Flow Designer automation.",
   ],
   patents: [
     {
@@ -117,6 +118,31 @@ export const portfolioData = {
     },
   ],
   projects: [
+    {
+      id: "servicenow-vendor-risk",
+      title: "Vendor Risk Assessment and Remediation Management",
+      description:
+        "Native ServiceNow application for vendor assessments, evidence-backed risk scoring, remediation, and independent approvals.",
+      details:
+        "Built and deployed a scoped application on a ServiceNow development instance using the official SDK. The application manages vendor onboarding, versioned questionnaires, weighted risk scoring, evidence collection, remediation verification, risk exceptions, and periodic reassessment through native forms, Studio, and Flow Designer.",
+      detailsPoints: [
+        "Configured nine application tables, six roles, record and field ACLs, forms, related lists, UI policies, notifications, four reports, and an overview dashboard to demonstrate CSA administration and security skills.",
+        "Developed Script Includes, Business Rules, client scripts, UI actions, and Scripted REST APIs for conditional questionnaires, immutable assessment snapshots, weighted scoring, and attachment validation to demonstrate CAD development skills.",
+        "Created three Flow Designer flows for assessment assignment, remediation assignment, and independent approval routing, with a reusable server-script action.",
+        "Enforced approval checks on the server: critical failures block approval, remediation requires independent verification, and requesters cannot approve their own vendors.",
+        "Implemented idempotent workflow actions and scheduled maintenance for overdue reminders, exception expiry, and periodic reassessment.",
+        "Validated the application with 40 automated policy tests and 23 live instance checks; GitHub CI also passed. The recorded live acceptance run was completed on October 1, 2026.",
+        "Published source, installation instructions, a demo guide, and a versioned deployment package. The application targets development instances; notification delivery depends on instance outbound-email settings.",
+      ],
+      tech: [
+        "ServiceNow",
+        "JavaScript",
+        "Flow Designer",
+        "Scripted REST APIs",
+        "ACLs",
+        "ServiceNow SDK",
+      ],
+    },
     {
       id: "fincore-banking-platform",
       title: "FinCore Banking Platform",

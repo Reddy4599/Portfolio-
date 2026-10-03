@@ -94,7 +94,7 @@ export default function ProjectsSection({ projects, onOpenProject, github }) {
               Same drive to build.
             </span>
           }
-          description="Three systems, from the integrity of a transaction to the intelligence of a device."
+          description="From secure enterprise workflows and reliable transactions to explainable AI and intelligent devices."
         />
         <div className="projects-grid">
           {projects.map((project, index) => (

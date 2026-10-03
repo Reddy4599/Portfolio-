@@ -1,5 +1,26 @@
-// Presentation metadata summarizes the existing resume-backed project content.
+// Presentation metadata summarizes documented project implementations.
 export const projectStories = {
+  "servicenow-vendor-risk": {
+    kind: "workflow",
+    shortTitle: "Vendor risk",
+    category: "ServiceNow / CSA + CAD",
+    color: "#a6dfde",
+    repository: "https://github.com/Reddy4599/servicenow-vendor-risk",
+    demoGuide:
+      "https://github.com/Reddy4599/servicenow-vendor-risk/blob/main/docs/demo-guide.md",
+    release:
+      "https://github.com/Reddy4599/servicenow-vendor-risk/releases/tag/v1.0.0",
+    problem:
+      "Keep vendor approval tied to evidence and risk controls, with independent review of remediation and a clear record of each decision.",
+    architecture: [
+      "Versioned assessments",
+      "Risk scoring + evidence",
+      "Verified remediation",
+      "Independent approval",
+    ],
+    result: "40 policy tests + 23 live checks",
+    resultLabel: "9 tables / 6 roles / 3 Flow Designer flows",
+  },
   "fincore-banking-platform": {
     kind: "banking",
     shortTitle: "FinCore",

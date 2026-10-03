@@ -141,7 +141,13 @@ function Studio() {
         <TimelineSection entries={portfolioData.timeline} />
         <PatentSection
           patents={portfolioData.patents}
-          onExplore={() => setSelectedProject(portfolioData.projects[1])}
+          onExplore={() =>
+            setSelectedProject(
+              portfolioData.projects.find(
+                (project) => project.id === "xai-health-screening",
+              ),
+            )
+          }
         />
         <CertificationsSection certifications={portfolioData.certifications} />
         <ContactSection

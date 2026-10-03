@@ -120,6 +120,26 @@ export default function ProjectModal({ project, onClose }) {
               Live demo <Icon name="external" size={17} />
             </a>
           )}
+          {story.demoGuide && (
+            <a
+              className="button button-quiet"
+              href={story.demoGuide}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Demo guide <Icon name="external" size={17} />
+            </a>
+          )}
+          {story.release && (
+            <a
+              className="button button-quiet"
+              href={story.release}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Deployment package <Icon name="external" size={17} />
+            </a>
+          )}
           <button className="text-link" onClick={onClose}>
             Back to portfolio <Icon name="arrow" size={17} />
           </button>
